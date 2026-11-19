@@ -1,0 +1,15 @@
+# tested with torch 2.14 / torchvision 0.29 (CUDA 13.0); torch >= 2.5 should work
+torch>=2.5
+torchvision
+torchmetrics[image]>=1.4
+einops
+numpy<2.0
+scipy
+opencv-python
+pyyaml
+safetensors
+tensorboard
+# data preparation
+huggingface_hub
+av
+pillow

@@ -1,0 +1,4 @@
+# PRoPE + temporal RoPE (Tab. 1 "PRoPE")
+model:
+  pos_enc: prope
+  galileo: {time_planes: "x:15,16,17"}

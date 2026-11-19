@@ -1,0 +1,4 @@
+# RayRoPE + temporal RoPE (Tab. 1 "RayRoPE")
+model:
+  pos_enc: rayrope
+depth_sup_weight: 0.1

@@ -1,0 +1,9 @@
+# RayRoPE + GALILEO with external RAFT matches instead of the matcher, no matching loss (supp. Tab. 10 "RAFT flow")
+model:
+  pos_enc: rayrope
+  galileo: {enabled: true}
+depth_sup_weight: 0.1
+corr_ext_match: raft
+ext_raft: data_raftc512.npz
+corr_weight: 0.0
+corr_fine_weight: 0.0

@@ -1,0 +1,5 @@
+# Plücker rays in the tokens + learned time embedding (Tab. 1 "Plücker")
+model:
+  pos_enc: none
+  ray_encoding: plucker
+  galileo: {time_enc: embed}

@@ -1,0 +1,6 @@
+# RayRoPE + GALILEO, 12 layers (supp. "Scaling to a 12-layer backbone")
+model:
+  pos_enc: rayrope
+  encoder: {num_layers: 12, dim_feedforward: 3072}
+  galileo: {enabled: true}
+depth_sup_weight: 0.1

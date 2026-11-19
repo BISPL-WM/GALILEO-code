@@ -1,0 +1,7 @@
+# URoPE + GALILEO (Tab. 1 "URoPE + GALILEO"): matching on detached features, window around the token's own position
+model:
+  pos_enc: urope
+  urope_min_depth: 0.4
+  urope_max_depth: 3.6
+  urope_group_size: 2
+  galileo: {time_planes: "x:33,34,35", enabled: true, corr_center: self, corr_detach: true}
