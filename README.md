@@ -11,11 +11,11 @@ Kim Jaechul Graduate School of Artificial Intelligence, KAIST<br>
 <a href="#checkpoints"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Checkpoints-ffd21e" alt="Checkpoints"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey" alt="License: MIT"></a>
 
-<img src="assets/teaser_xt.png" width="100%" alt="Space-time slices of a Stereo4D test clip: RayRoPE, GALILEO, ground truth">
+<img src="assets/teaser_xt.webp" width="100%" alt="RayRoPE, GALILEO and ground truth on a Stereo4D test clip, with one image row stacked over time">
 
-<sub>A moving object is a line in space–time: one image row of a Stereo4D test clip followed over time. RayRoPE draws
-a staircase, its content held where an input frame captured it until the next one; GALILEO follows the slanted lines
-of the ground truth.</sub>
+<sub>A Stereo4D test clip, slowed down ten times. Top: the rendering at the query time; bottom: the white image row
+stacked over time (time runs up, ticks mark the four input times). RayRoPE stands still, then jumps: a staircase.
+GALILEO moves between the inputs along the slanted line of the ground truth.</sub>
 
 </div>
 
