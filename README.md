@@ -44,21 +44,23 @@ Every script skips clips that are already done and can be sharded (`--shard i --
 ## Checkpoints
 
 All models: 6-layer decoder-only LVSM (12 layers where noted), 256x256, 20k steps, batch 12.
-PSNR is the mean of interpolation and extrapolation (paper Tab. 1 and supp.).
+Image metrics (`evaluate.py`): mean of interpolation and extrapolation; video metrics (`evaluate_video.py`): tOF,
+δ_avg and JEDi over the 1,200 test videos (paper Tab. 1 and 2; the RAFT and 12-layer rows are not in the paper's
+video tables).
 
-| Config (`configs/stereo4d/`) | Paper | PSNR_dyn | PSNR |
-|---|---|---|---|
-| `plucker.yaml` | Plücker | 23.59 | 29.17 |
-| `prope.yaml` | PRoPE | 24.06 | 29.95 |
-| `gta.yaml` | GTA | 24.15 | 30.07 |
-| `urope.yaml` | URoPE | 24.61 | 30.73 |
-| `urope_galileo.yaml` | URoPE + GALILEO | 25.41 | 31.00 |
-| `rayrope.yaml` | RayRoPE | 24.61 | 31.04 |
-| `rayrope_galileo.yaml` | RayRoPE + GALILEO | **25.78** | 31.34 |
-| `rayrope_galileo.yaml` + `--motion_off` | motion off at test (Tab. 2) | 24.47 | 30.95 |
-| `rayrope_galileo_raft.yaml` | + GALILEO, RAFT flow (supp.) | 25.60 | 31.43 |
-| `rayrope_L12.yaml` | RayRoPE, 12 layers (supp.) | 25.56 | 32.14 |
-| `rayrope_galileo_L12.yaml` | RayRoPE + GALILEO, 12 layers (supp.) | 26.39 | 32.26 |
+| Config (`configs/stereo4d/`) | Paper | PSNR_dyn | PSNR | tOF | δ_avg | JEDi |
+|---|---|---|---|---|---|---|
+| `plucker.yaml` | Plücker | 23.59 | 29.17 | 1.52 | .918 | 1.047 |
+| `prope.yaml` | PRoPE | 24.06 | 29.95 | 1.44 | .926 | 0.741 |
+| `gta.yaml` | GTA | 24.15 | 30.07 | 1.41 | .928 | 0.726 |
+| `urope.yaml` | URoPE | 24.61 | 30.73 | 1.08 | .939 | 0.493 |
+| `urope_galileo.yaml` | URoPE + GALILEO | 25.41 | 31.00 | 0.89 | .950 | 0.391 |
+| `rayrope.yaml` | RayRoPE | 24.61 | 31.04 | 1.04 | .947 | 0.466 |
+| `rayrope_galileo.yaml` | RayRoPE + GALILEO | **25.78** | 31.34 | 0.80 | .958 | **0.343** |
+| `rayrope_galileo.yaml` + `--motion_off` | motion off at test (Tab. 2) | 24.47 | 30.95 | 1.09 | .947 | 0.514 |
+| `rayrope_galileo_raft.yaml` | + GALILEO, RAFT flow (supp.) | 25.60 | 31.43 | 0.75 | .963 | 0.363 |
+| `rayrope_L12.yaml` | RayRoPE, 12 layers (supp.) | 25.56 | 32.14 | – | – | – |
+| `rayrope_galileo_L12.yaml` | RayRoPE + GALILEO, 12 layers (supp.) | 26.39 | 32.26 | 0.74 | .960 | 0.374 |
 
 Download: (link coming soon) into `checkpoints/<config name>.safetensors`.
 
@@ -71,6 +73,27 @@ python evaluate.py --config configs/stereo4d/rayrope_galileo.yaml --ckpt checkpo
 
 Prints the metrics per protocol and their mean; writes `tests/metrics_*.json` and per-entry values
 (`tests/per_entry_*.json`). Multi-GPU: `torchrun --standalone --nproc-per-node=<n> evaluate.py ...`.
+
+### Video metrics
+
+One video per test clip and camera: the clip's inputs and that camera at every frame of its window (18 frames,
+interpolation and one extrapolation step), rendered in one forward pass. tOF compares RAFT flows of the rendered and
+ground-truth videos on the moving pixels, δ_avg tracks moving ground-truth points on the rendered video with
+CoTracker3, and JEDi compares V-JEPA features of the rendered and ground-truth videos (`galileo/video_metrics.py`).
+
+```bash
+pip install --no-deps vjepa==0.1.2   # V-JEPA model code only (its pinned dependencies are not needed)
+wget -P vjepa https://dl.fbaipublicfiles.com/jepa/vith16/vith16.pth.tar \
+              https://dl.fbaipublicfiles.com/jepa/vith16/ssv2-probe.pth.tar
+git clone https://github.com/facebookresearch/co-tracker && git -C co-tracker checkout 82e02e8
+python evaluate_video.py --config configs/stereo4d/rayrope_galileo.yaml \
+    --ckpt checkpoints/rayrope_galileo.safetensors --vjepa_dir vjepa --cotracker co-tracker \
+    data_dir=$STEREO4D_DIR output_dir=runs/eval/rayrope_galileo
+```
+
+Writes per-video values to `runs/eval/rayrope_galileo/videos/` and prints tOF, δ_avg and JEDi once all 1,200 videos
+are done. A rerun resumes; `--shard k/K` splits the videos between processes (e.g. one per GPU, then run once more
+without `--shard` for the summary). The videos are rendered without `torch.compile`, as for the paper.
 
 ## Training
 
@@ -90,6 +113,7 @@ its weights.
 - `galileo/pos_enc/urope.py`, `prope.py`: URoPE (+ GALILEO), PRoPE / GTA.
 - `galileo/models/lvsm.py`: the LVSM model and its configs; `galileo/trainer.py`: losses, training, evaluation.
 - `galileo/data/stereo4d.py`: Stereo4D samples, ARROW pseudo-ground-truth motion.
+- `galileo/video_metrics.py`: tOF, δ_avg and JEDi.
 
 ## Citation
 
