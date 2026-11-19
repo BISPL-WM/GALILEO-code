@@ -10,7 +10,7 @@ experiments of the paper (novel-time view synthesis from two stereo cameras at f
 ## Installation
 
 ```bash
-git clone <this repository> galileo && cd galileo
+git clone https://github.com/BISPL-WM/GALILEO-code.git galileo && cd galileo
 pip install -r requirements.txt
 ```
 
