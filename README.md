@@ -1,17 +1,15 @@
 <div align="center">
 
-<h1>GALILEO: Geometric RoPE with Galilean Key Transport<br>for Dynamic Scenes</h1>
+<h1>GALILEO: Geometric RoPE with<br>Galilean Key Transport for Dynamic Scenes</h1>
 
-Youngmin Kim<sup>*</sup> · Seonghyun Jin<sup>*</sup> · Jong Chul Ye<sup>†</sup><br>
+Youngmin Kim<sup>&#42;</sup> · Seonghyun Jin<sup>&#42;</sup> · Jong Chul Ye<sup>†</sup><br>
 Kim Jaechul Graduate School of Artificial Intelligence, KAIST<br>
-<sub><sup>*</sup>Equal contribution · <sup>†</sup>Corresponding author</sub>
+<sub><sup>&#42;</sup>Equal contribution · <sup>†</sup>Corresponding author</sub>
 
 <img src="https://img.shields.io/badge/arXiv-coming%20soon-b31b1b" alt="arXiv (coming soon)">
 <a href="https://bispl-wm.github.io/GALILEO/"><img src="https://img.shields.io/badge/Project-Page-e0a040" alt="Project page"></a>
 <a href="#checkpoints"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Checkpoints-ffd21e" alt="Checkpoints"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey" alt="License: MIT"></a>
-
-<br><br>
 
 <img src="assets/stereo4d.gif" width="100%" alt="RayRoPE, GALILEO and ground truth on six Stereo4D test clips">
 
