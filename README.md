@@ -13,7 +13,7 @@ Kim Jaechul Graduate School of Artificial Intelligence, KAIST<br>
 
 <img src="assets/teaser_xt.webp" width="100%" alt="The eight input images of a Stereo4D test clip, then RayRoPE, GALILEO and ground truth, with one image row stacked over time">
 
-<sub>A Stereo4D test clip, slowed down ten times. Top: the only inputs, two stereo cameras at four times. Middle: the
+<sub>A Stereo4D test clip at 0.3× speed. Top: the only inputs, two stereo cameras at four times. Middle: the
 rendering at the query time, which runs over every frame between and after the inputs; bottom: the white image row
 stacked over time (time runs up, ticks in the colors of the input times). RayRoPE stands still, then jumps: a
 staircase. GALILEO moves between the inputs along the slanted line of the ground truth.</sub>
