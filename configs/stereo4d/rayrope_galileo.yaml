@@ -1,0 +1,5 @@
+# RayRoPE + GALILEO (Tab. 1 "RayRoPE + GALILEO"; Tab. 2 "motion off" = this model evaluated with --motion_off)
+model:
+  pos_enc: rayrope
+  galileo: {enabled: true}
+depth_sup_weight: 0.1

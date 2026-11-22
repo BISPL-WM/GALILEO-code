@@ -1,0 +1,4 @@
+# GTA + temporal RoPE (Tab. 1 "GTA")
+model:
+  pos_enc: gta
+  galileo: {time_planes: "x:15,16,17"}
