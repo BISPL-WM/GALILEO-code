@@ -6,7 +6,7 @@ Youngmin Kim<sup>&#42;</sup> · Seonghyun Jin<sup>&#42;</sup> · Jong Chul Ye<su
 Kim Jaechul Graduate School of Artificial Intelligence, KAIST<br>
 <sub><sup>&#42;</sup>Equal contribution · <sup>†</sup>Corresponding author</sub>
 
-<img src="https://img.shields.io/badge/arXiv-coming%20soon-b31b1b" alt="arXiv (coming soon)">
+<a href="https://arxiv.org/abs/2611.29293"><img src="https://img.shields.io/badge/arXiv-2611.29293-b31b1b" alt="arXiv"></a>
 <a href="https://bispl-wm.github.io/GALILEO/"><img src="https://img.shields.io/badge/Project-Page-e0a040" alt="Project page"></a>
 <a href="https://huggingface.co/ggred0123/GALILEO"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Checkpoints-ffd21e" alt="Checkpoints"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey" alt="License: MIT"></a>
@@ -138,7 +138,7 @@ its weights.
 @article{kim2026galileo,
   title   = {GALILEO: Geometric RoPE with Galilean Key Transport for Dynamic Scenes},
   author  = {Kim, Youngmin and Jin, Seonghyun and Ye, Jong Chul},
-  journal = {arXiv preprint},
+  journal = {arXiv preprint arXiv:2611.29293},
   year    = {2026}
 }
 ```
